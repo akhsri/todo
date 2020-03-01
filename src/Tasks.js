@@ -1,12 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import TaskCard from "./TaskCard";
 import axios from "axios";
 import AddTask from "./AddTask";
 import Modal from "react-bootstrap-modal";
+import AppBar from "./AppBar";
 
 class Tasks extends Component {
   state = {
     cards: [],
+    isAuthenticated: false,
     open: false
   };
   componentDidMount() {
@@ -27,7 +29,7 @@ class Tasks extends Component {
           throw new Error("An error occured");
         }
         console.log("response: ", response);
-        this.setState({ cards: response.data });
+        this.setState({ cards: response.data, isAuthenticated: true });
         console.log("New state", this.state);
       })
       .catch(error => {
@@ -43,33 +45,34 @@ class Tasks extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="container">
-          <div className="row" id="head-recent-row">
-            <div className="col" id="head-recent-col">
-              <h3>
-                Recents
-                <button
-                  type="button"
-                  className="btn "
-                  id="add-btn"
-                  onClick={this.handleShow}
-                  onHide={this.closeModal}
-                  show={this.state.open}
-                >
-                  Add Tasks
-                </button>
-              </h3>
+      <Fragment>
+        <div>
+          <div className="container">
+            <div className="row" id="head-recent-row">
+              <div className="col" id="head-recent-col">
+                <h3>
+                  Recents
+                  <button
+                    type="button"
+                    className="btn "
+                    id="add-btn"
+                    onClick={this.handleShow}
+                    onHide={this.closeModal}
+                    show={this.state.open}
+                  >
+                    Add Tasks
+                  </button>
+                </h3>
+              </div>
+            </div>
+            <div className="card-deck">
+              {this.state.cards.map(card => {
+                return <TaskCard card={card} key={card._id} id={card._id} />;
+              })}
             </div>
           </div>
-          <div className="card-deck">
-            {this.state.cards.map(card => {
-              return <TaskCard card={card} key={card._id} id={card._id} />;
-            })}
-          </div>
-        </div>
-        <style>
-          {`
+          <style>
+            {`
             #head-recent-row{
               margin: 5% 0 2% 0; 
             }
@@ -84,8 +87,9 @@ class Tasks extends Component {
               height: 49.48px;
             }
           `}
-        </style>
-      </div>
+          </style>
+        </div>
+      </Fragment>
     );
   }
 }

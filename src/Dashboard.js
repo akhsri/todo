@@ -1,26 +1,30 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Sidebar from "./Sidebar";
 import TaskCard from "./TaskCard";
 import AddCard from "./AddCard";
 import Tasks from "./Tasks";
-import AppBar from "./AppBar";
+import AppBar from "./Authenticated.AppBar";
 
-const Main = () => {
+const Dashboard = () => {
   return (
-    <div className="Main">
+    <Fragment>
       <div>
-        <div className="row">
-          <div className="col-12 col-md-2" id="sidebar-col">
-            <Sidebar />
-          </div>
-          <div className="col-12 col-md-9">
-            <Tasks />
+        <AppBar />
+      </div>
+      <div className="Dashboard">
+        <div>
+          <div className="row">
+            <div className="col-12 col-md-2" id="sidebar-col">
+              <Sidebar />
+            </div>
+            <div className="col-12 col-md-9">
+              <Tasks />
+            </div>
           </div>
         </div>
-      </div>
-      <style>
-        {`
-        .Main{
+        <style>
+          {`
+        .Dashboard{
           background-color: #9e9e9e45;
         }
         .container{
@@ -30,8 +34,9 @@ const Main = () => {
           margin-top: 40px;
         }
       `}
-      </style>
-    </div>
+        </style>
+      </div>
+    </Fragment>
   );
 };
-export default Main;
+export default Dashboard;

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
+import AppBar from "./AppBar";
 
 class Signin extends Component {
   constructor() {
@@ -38,63 +39,67 @@ class Signin extends Component {
 
   render() {
     return (
-      <div id="container">
-        <Row>
-          <Col xs={12} md={6} className="back-img">
-            <div>
-              <img
-                src="http://66.media.tumblr.com/tumblr_m34i0zbR9R1qahug3o1_500.jpg"
-                alt="cover-img"
-              ></img>
-            </div>
-          </Col>
+      <Fragment>
+        <div>
+          <AppBar />
+        </div>
+        <div id="container">
+          <Row>
+            <Col xs={12} md={6} className="back-img">
+              <div>
+                <img
+                  src="http://66.media.tumblr.com/tumblr_m34i0zbR9R1qahug3o1_500.jpg"
+                  alt="cover-img"
+                ></img>
+              </div>
+            </Col>
 
-          <Col xs={12} md={6}>
-            <div id="form">
-              <h3>Sign In</h3>
-              <Form onSubmit={this.onSubmit}>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    name="email"
-                    value={this.state.name}
-                    onChange={this.onValueChange}
-                  />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
-                </Form.Group>
+            <Col xs={12} md={6}>
+              <div id="form">
+                <h3>Sign In</h3>
+                <Form onSubmit={this.onSubmit}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
+                      name="email"
+                      value={this.state.name}
+                      onChange={this.onValueChange}
+                    />
+                    <Form.Text className="text-muted">
+                      We'll never share your email with anyone else.
+                    </Form.Text>
+                  </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.name}
-                    onChange={this.onValueChange}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={this.state.name}
+                      onChange={this.onValueChange}
+                    />
+                  </Form.Group>
 
-                <Button variant="primary" type="submit" id="btn">
-                  Signin
-                </Button>
+                  <Button variant="primary" type="submit" id="btn">
+                    Signin
+                  </Button>
 
-                <div>
-                  <p id="signup-para">
-                    Don't have an account?
-                    <a href="#"> Sign up </a>
-                  </p>
-                </div>
-              </Form>
-            </div>
-          </Col>
-        </Row>
+                  <div>
+                    <p id="signup-para">
+                      Don't have an account?
+                      <a href="#"> Sign up </a>
+                    </p>
+                  </div>
+                </Form>
+              </div>
+            </Col>
+          </Row>
 
-        <style>
-          {`
+          <style>
+            {`
                 #container{
                     height: 100vh;
                 }
@@ -133,8 +138,9 @@ class Signin extends Component {
                     font-weight: bolder;
                 }
             `}
-        </style>
-      </div>
+          </style>
+        </div>
+      </Fragment>
     );
   }
 }

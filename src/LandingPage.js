@@ -3,11 +3,15 @@ import { Router, Route, NavLink, HashRouter } from "react-router-dom";
 import Signup from "./Signup";
 import Signin from "./Signin";
 import { Nav, Row, Col } from "react-bootstrap";
+import AppBar from "./AppBar";
 
 class LandingPage extends Component {
   render() {
     return (
       <Fragment>
+        <div>
+          <AppBar />
+        </div>
         <div>
           <Row id="hero">
             <Col xs={12} md={6} id="col-1">
