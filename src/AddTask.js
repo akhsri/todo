@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
@@ -11,7 +11,8 @@ class AddTasks extends Component {
     this.state = {
       taskName: "",
       scheduledAt: "",
-      taskDescription: ""
+      taskDescription: "",
+      show: false
     };
   }
   onValueChange = event => {
@@ -44,44 +45,57 @@ class AddTasks extends Component {
     console.log(this.state);
   };
 
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  handleShow = () => {
+    this.setState({ show: true });
+  };
+
   render() {
     return (
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Task</Modal.Title>
-        </Modal.Header>
+      <Fragment>
+        <Button variant="primary" onClick={this.handleShow}>
+          Add Tasks
+        </Button>
+        <Modal.Dialog show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add Task</Modal.Title>
+          </Modal.Header>
 
-        <Modal.Body>
-          <Form onSubmit={this.onSubmit}>
-            <Form.Label>Task Name</Form.Label>
-            <Form.Control
-              placeholder="Task Name"
-              name="taskName"
-              value={this.state.name}
-              onChange={this.onValueChange}
-            />
-            <Form.Label>Scheduled At</Form.Label>
-            <Form.Control
-              placeholder="Scheduled At"
-              name="scheduledAt"
-              value={this.state.name}
-              onChange={this.onValueChange}
-            />
-            <Form.Label>Task Description</Form.Label>
-            <Form.Control
-              placeholder="Task Description"
-              name="taskDescription"
-              value={this.state.name}
-              onChange={this.onValueChange}
-            />
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={this.onSubmit}>
-            Add Task
-          </Button>
-        </Modal.Footer>
-      </Modal.Dialog>
+          <Modal.Body>
+            <Form onSubmit={this.onSubmit}>
+              <Form.Label>Task Name</Form.Label>
+              <Form.Control
+                placeholder="Task Name"
+                name="taskName"
+                value={this.state.name}
+                onChange={this.onValueChange}
+              />
+              <Form.Label>Scheduled At</Form.Label>
+              <Form.Control
+                placeholder="Scheduled At"
+                name="scheduledAt"
+                value={this.state.name}
+                onChange={this.onValueChange}
+              />
+              <Form.Label>Task Description</Form.Label>
+              <Form.Control
+                placeholder="Task Description"
+                name="taskDescription"
+                value={this.state.name}
+                onChange={this.onValueChange}
+              />
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" type="submit" onClick={this.onSubmit}>
+              Add Task
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+      </Fragment>
     );
   }
 }

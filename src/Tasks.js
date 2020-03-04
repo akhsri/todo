@@ -36,13 +36,7 @@ class Tasks extends Component {
         console.log(error.message);
       });
   }
-  closeModal = () => {
-    this.setState({ open: false });
-  };
-  handleShow = () => {
-    this.setState({ open: true });
-    console.log("State after click", this.state);
-  };
+
   render() {
     return (
       <Fragment>
